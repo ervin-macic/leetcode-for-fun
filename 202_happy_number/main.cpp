@@ -6,17 +6,18 @@ public:
     bool isHappy(int n) {
         long long num = 0;
         int counter = 0;
-        while(counter < 20){
+        while(true){
             num = 0;
             while(n > 0){
             //cout << "NUM " << num << endl;
             num += (n % 10) * (n % 10);
             n /= 10;
             }
-            cout << num << endl;
+            //cout << num << endl;
+            if(num == 4) return false;
             if(num == 1) return true;
             n = num;
-            counter++;
+            //counter++;
         }
     }
 };
