@@ -3,33 +3,25 @@
 using namespace std;
 class Solution {
 public:
-    void floodFill(int i, int j, vector<vector<char>>& grid){
-        //cout << i << " " << j << endl;
-        if(j - 1 >= 0 and grid[i][j-1] == '1'){
-            grid[i][j-1] = 'X';
-            floodFill(i,j-1,grid);
-        }
-        if(i - 1 >= 0 and grid[i-1][j] == '1'){
-            grid[i-1][j] = 'X';
-            floodFill(i-1,j,grid);
-        }
-        if(i + 1 < (int)grid[0].size() and grid[i+1][j] == '1'){
-            grid[i+1][j] = 'X';
-            floodFill(i+1,j,grid);
-        }
-        if(j + 1 < (int)grid.size() and grid[i][j+1] == '1'){
-            grid[i][j+1] = 'X';
-            floodFill(i,j+1,grid);
-        }
-        //cout << "fuck";
+    void floodFill(int i, int j, vector<vector<char>>& grid, int m, int n){
+        if (i < 0 || j < 0 || i == m || j == n || grid[i][j] == '0' || grid[i][j] == 'X') return;
+        grid[i][j]='X';
+        floodFill(i+1,j,grid,m,n);
+        floodFill(i,j+1,grid,m,n);
+        floodFill(i-1,j,grid,m,n);
+        floodFill(i,j-1,grid,m,n);
+        return;
+
     }
     int numIslands(vector<vector<char>>& grid) {
         int ans = 0;
-        for(int i = 0; i < grid.size(); i++){
-            for(int j = 0; j < grid[0].size(); j++){
+        int m = grid.size();
+        int n = grid[0].size();
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
                 if(grid[i][j] == '1'){
-                    grid[i][j] = 'X';
-                    floodFill(i,j,grid);
+                    floodFill(i,j,grid,m,n);
+                    //cout << i << " " << j <<endl;
                     ans++;
                 }
             }
