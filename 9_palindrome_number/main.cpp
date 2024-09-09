@@ -4,6 +4,7 @@ using namespace std;
 class Solution {
 public:
     bool isPalindrome(int x) {
+        ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
         if(x < 0) return false;
         if(x == 0) return true;
         if(x%10 == 0) return false;
@@ -12,7 +13,6 @@ public:
             x_reversed = x_reversed*10 + x%10;
             x /= 10;
         }
-        cout << x << " " << x_reversed;
         if(x == x_reversed / 10 || x == x_reversed) return true; //14241   x_reeversed: 1 x = 1424 (14, 142) (142, 14)
         return false;
     }
