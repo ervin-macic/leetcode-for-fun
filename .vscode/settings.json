@@ -61,6 +61,14 @@
     "memory_resource": "cpp",
     "scoped_allocator": "cpp",
     "regex": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "array": "cpp",
+    "bitset": "cpp",
+    "string_view": "cpp",
+    "initializer_list": "cpp",
+    "ranges": "cpp",
+    "span": "cpp",
+    "stacktrace": "cpp",
+    "valarray": "cpp"
   }
 }
