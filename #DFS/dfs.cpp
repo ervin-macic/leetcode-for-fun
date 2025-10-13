@@ -1,34 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename Map>
-    void DFS(auto graph, Map visited, int vertex){
-        cout << vertex << endl;
-        visited[vertex] = true;
-        for(auto neighbor : graph[vertex])
-            if(!visited[neighbor]) 
-                DFS(graph, visited, neighbor);
-    }
+void DFS(const vector<vector<int>> &graph, unordered_map<int, bool> &visited, int source){
+    cout << source << endl;
+    visited[source] = true;
+    for(auto neighbor : graph[source])
+        if(!visited[neighbor]) 
+            DFS(graph, visited, neighbor);
+}
 int main()
 {
-    int edges, nodes;
-    cout << "Input number of nodes: " << endl;
-    cin >> nodes;
+    int V, E;
+    cout << "Input number of vertices: " << endl;
+    cin >> V;
     cout << "Input number of edges: " << endl;
-    cin >> edges;
-    vector<vector<int>> graph(nodes);
+    cin >> E;
+    vector<vector<int>> graph(V);
     unordered_map<int, bool> visited;
-    for(int i = 0; i < edges; i++){
-        int v1, v2;
+    for(int i = 0; i < E; i++){
+        int u, v;
         cout << "Input the " << i+1 << ". edge (two vertices):\n";
-        cin >> v1;
-        cin >> v2;
-        graph[v1].push_back(v2);
-        graph[v2].push_back(v1);
+        cin >> u;
+        cin >> v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
     }
     int source;
-    cout << "Where are we starting the depth-first-search? Give me the source node: " << endl;
+    cout << "Start DFS from node: ";
     cin >> source;
-    // run the algorithm:
     DFS(graph, visited, source);
 }
