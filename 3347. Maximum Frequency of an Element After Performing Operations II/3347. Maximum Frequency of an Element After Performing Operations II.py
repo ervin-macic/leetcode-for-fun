@@ -11,6 +11,7 @@ class Solution:
         for num in nums:
             cnt[num] += 1
 
+        # Turns out that the only relevant numbers are num and num-k
         for num in nums:
             potential_targets.add(num)
             if num-k >= nums[0]:
