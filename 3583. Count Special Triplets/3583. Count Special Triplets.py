@@ -16,7 +16,7 @@ class Solution:
         total = 0
         num_sols = defaultdict(int)
         for i, n in enumerate(nums):
-            if seen[n] and seen[n // 2]:
+            if n % 2 == 0 and seen[n] and seen[n // 2]:
                 # 8 4 8 8 4 4 4 8 4 4 4 4 8
                 previous_8 = seen[n][-1]
                 t = len(seen[n])
