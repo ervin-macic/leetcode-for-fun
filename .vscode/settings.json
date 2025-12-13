@@ -70,5 +70,6 @@
     "span": "cpp",
     "stacktrace": "cpp",
     "valarray": "cpp"
-  }
+  },
+  "terminal.integrated.suggest.cdPath": "relative"
 }
