@@ -7,12 +7,14 @@ class Solution:
             total_area += side * side
             ceiling = max(ceiling, y + side)
 
+        # Do binary search over possible y values
         left = 0.0
         right = ceiling
 
         while right - left > 1e-5:
             mid = (left + right) / 2
             area = 0.0
+            # (Inefficient) Go through all squares and sum total area under y = mid line
             for x, y, side in squares:
                 if mid > y:
                     area += side * min(mid - y, side)
@@ -21,7 +23,8 @@ class Solution:
                 right = mid
             else:
                 left = mid
-
+        # Here certainly right - left <= 1e-5 which is desired tolerance
+        # Ends up O(nlogn)
         return right
 
 sol = Solution()
