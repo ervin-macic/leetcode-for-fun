@@ -71,5 +71,6 @@
     "stacktrace": "cpp",
     "valarray": "cpp"
   },
-  "terminal.integrated.suggest.cdPath": "relative"
+  "terminal.integrated.suggest.cdPath": "relative",
+  "python.REPL.enableREPLSmartSend": false
 }
