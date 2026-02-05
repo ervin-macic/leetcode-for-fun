@@ -4,7 +4,6 @@ class MedianFinder:
         max_heap = []
         min_heap = []
 
-
     def addNum(self, num: int) -> None:
         if not max_heap or num <= max_heap.top():
             # push number to max heap of lower half of numbers
@@ -15,8 +14,6 @@ class MedianFinder:
             # push max_heap.top into min_heap
         if min_heap.size() > max_heap.size() + 1:
             # push min_heap.top into max_heap
-        
-        
 
     def findMedian(self) -> float:
         n = max_heap.size() + min_heap.size()
@@ -24,8 +21,6 @@ class MedianFinder:
             return max_heap.top()
         else:
             return min_heap.top()
-        
-
 
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
