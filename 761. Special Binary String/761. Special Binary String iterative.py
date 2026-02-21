@@ -1,7 +1,5 @@
 class Solution:
     def makeLargestSpecial(self, s: str) -> str:
-        if s == "": return ""
-
         def getCatalans(s: str) -> list[str]:
             catalans = []
             ones = 0
