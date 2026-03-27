@@ -8,6 +8,8 @@ public:
         int r = 0;
         int maxprofit = 0;
         int profit = prices[r] - prices[l];
+        // prices[l] tracks prefix min price for optimal buy
+        // prices[r] just tries out everything for sell with prefix min buy price
         while(r < prices.size()){
             profit = prices[r] - prices[l];
             if(profit < 0){ //found smaller value for left bound
@@ -15,9 +17,7 @@ public:
                 r++;
                 continue;
             }
-            if(maxprofit < profit){
-                maxprofit = profit;
-            }
+            maxprofit = max(maxprofit, profit);
             r++;
         }
         return maxprofit;
