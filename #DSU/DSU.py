@@ -10,12 +10,11 @@ class DSU:
         return x
 
     def union(self, a, b):
-        a = self.find(a)
-        b = self.find(b)
-        if a == b:
+        ra, rb = self.find(a), self.find(b)
+        if ra == rb:
             return False
-        if self.size[a] < self.size[b]:
-            a, b = b, a
-        self.parent[b] = a
-        self.size[a] += self.size[b]
+        if self.size[ra] < self.size[rb]:
+            ra, rb = rb, ra
+        self.parent[rb] = ra
+        self.size[ra] += self.size[rb]
         return True
