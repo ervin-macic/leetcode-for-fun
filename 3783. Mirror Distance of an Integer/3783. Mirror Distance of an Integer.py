@@ -1,0 +1,10 @@
+class Solution:
+    def mirrorDistance(self, n: int) -> int:
+        def reversed_int(x: int) -> int:
+            y = 0
+            while x > 0:
+                y *= 10
+                y += x % 10
+                x //= 10
+            return y
+        return abs(n - reversed_int(n))
