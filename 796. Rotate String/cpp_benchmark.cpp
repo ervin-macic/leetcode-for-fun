@@ -17,25 +17,16 @@ bool rotateFind(const string& s, const string& goal) {
 }
 
 bool rotateManual(const string& s, const string& goal) {
-    if (s.size() != goal.size()) return false;
-
-    string d = s + s;
-    int n = d.size(), m = goal.size();
-
-    for (int i = 0; i <= n - m; i++) {
-        bool ok = true;
-
-        for (int j = 0; j < m; j++) {
-            if (d[i + j] != goal[j]) {
-                ok = false;
-                break;
-            }
+    if(s.length() != goal.length()) return false;
+        size_t n = s.size();
+        for (size_t start = 0; start < n; ++start) {
+            if(s[start] != goal[start]) continue;
+            int i = 0;
+            while(i < n and s[(start + i) % n] == goal[i]) i += 1;
+            if (i == n)
+                return true;
         }
-
-        if (ok) return true;
-    }
-
-    return false;
+        return false;
 }
 
 string rotateByK(const string& s, int k) {
