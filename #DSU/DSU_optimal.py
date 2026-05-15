@@ -2,8 +2,10 @@
 class DSU:
     def __init__(self, n):
         self.p = list(range(n))
+        # uses size instead of rank which might be more useful if you need to know the size of component
         self.sz = [1] * n
 
+    # could implement this recursively but python recursion depth 1000, safer iteratively like below
     def find(self, x):
         p = self.p
         while p[x] != x:
