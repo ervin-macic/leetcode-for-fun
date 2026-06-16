@@ -1,29 +1,25 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-class DoublyLinkedListNode(ListNode):
-    def __init__(self, val=0, next=None, prev=None):
-        super().__init__()
-        self.prev = prev 
-
 class Solution:
     def pairSum(self, head: Optional[ListNode]) -> int:
-        curr = DoublyLinkedListNode(head.val, head.next)
-        left = curr
-        prev = None 
-        while curr != None:
-            curr.prev = prev
-            prev = curr
-            if curr.next == None:
-                break
-            curr = DoublyLinkedListNode(curr.next.val, curr.next.next)
+        slow = fast = head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        prev = None
+        while slow:
+            nxt = slow.next
+            slow.next = prev
+            prev = slow
+            slow = nxt
+
+        ans = 0
+        left = head
         right = prev
-        ans = -1
-        while left != None and right != None and left != right.prev:
+
+        while right:
             ans = max(ans, left.val + right.val)
-            left = left.next 
-            right = right.prev
+            left = left.next
+            right = right.next
+
         return ans
-        
