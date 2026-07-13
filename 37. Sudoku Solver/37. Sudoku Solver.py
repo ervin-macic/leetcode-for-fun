@@ -1,12 +1,4 @@
 from typing import List
-from dataclasses import dataclass, field
-import heapq
-@dataclass(order=True) 
-class EmptyCell:
-    numLegalMoves: int
-    legalMoves: List[str] = field(compare=False)
-    x: int
-    y: int
 
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
@@ -36,19 +28,20 @@ class Solution:
         
         def solve() -> bool:
             # most constrained empty cells first
-            pq = []
+            mostConstrained = None
+            minMoves = 10
             for i in range(n):
                 for j in range(n):
                     if board[i][j] == '.':
                         legalMoves = getLegalMoves(i, j)
                         if not legalMoves:
                             return False
-                        emptyCell = EmptyCell(len(legalMoves), legalMoves, i, j)
-                        heapq.heappush(pq, emptyCell)
-            if not pq:
+                        if len(legalMoves) < minMoves:
+                            minMoves = len(legalMoves)
+                            mostConstrained = ((i, j), legalMoves)
+            if not mostConstrained:
                 return True 
-            mostConstrained = heapq.heappop(pq)
-            legalMoves, x, y = mostConstrained.legalMoves, mostConstrained.x, mostConstrained.y
+            (x, y), legalMoves = mostConstrained
             for move in legalMoves:
                 board[x][y] = move
                 if solve():
