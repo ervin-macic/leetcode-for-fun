@@ -4,7 +4,6 @@ class Solution:
         cols = len(matrix[0])
         heights = [0] * cols
         max_area = 0
-
         for row in matrix:
             for c in range(cols):
                 heights[c] = heights[c] + 1 if row[c] == '1' else 0
@@ -16,7 +15,6 @@ class Solution:
                     w = i if not stack else i - stack[-1] - 1
                     max_area = max(max_area, h * w)
                 stack.append(i)
-
         return max_area
 
 sol = Solution()
